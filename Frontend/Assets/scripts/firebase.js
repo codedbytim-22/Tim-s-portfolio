@@ -29,3 +29,4 @@ window.FirebaseDB = {
   addDoc,
   serverTimestamp,
 };
+console.log("🔥 Firebase initialized successfully");

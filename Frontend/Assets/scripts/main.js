@@ -210,51 +210,40 @@ function initContactForm() {
   contactForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const formData = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      subject: document.getElementById("subject").value.trim(),
-      message: document.getElementById("message").value.trim(),
-    };
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-    // Clear previous errors
-    clearFormErrors();
+    if (!name || !email || !subject || !message) {
+      alert("Please fill in all fields.");
+      return;
+    }
 
-    // Validate form
-    if (validateForm(formData)) {
-      const submitBtn = contactForm.querySelector(".form-submit-btn");
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = "Sending...";
-      submitBtn.disabled = true;
+    const submitBtn = contactForm.querySelector(".form-submit-btn");
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
 
-      try {
-        // Firestore submission
-        await window.FirebaseDB.addDoc(
-          window.FirebaseDB.collection(window.FirebaseDB.db, "contactMessages"),
-          {
-            ...formData,
-            timestamp: window.FirebaseDB.serverTimestamp(),
-          },
-        );
+    try {
+      await window.FirebaseDB.addDoc(
+        window.FirebaseDB.collection(window.FirebaseDB.db, "contactMessages"),
+        {
+          name,
+          email,
+          subject,
+          message,
+          createdAt: window.FirebaseDB.serverTimestamp(),
+        },
+      );
 
-        // Success feedback
-        showFormMessage(
-          "Message sent successfully! I'll get back to you soon.",
-          "success",
-        );
-
-        contactForm.reset();
-        console.log("Form submitted:", formData);
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        showFormMessage(
-          "Oops! Something went wrong. Please try again later.",
-          "error",
-        );
-      } finally {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }
+      alert("✅ Message sent successfully!");
+      contactForm.reset();
+    } catch (error) {
+      console.error("❌ Firestore error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      submitBtn.textContent = "Send Message";
+      submitBtn.disabled = false;
     }
   });
 
