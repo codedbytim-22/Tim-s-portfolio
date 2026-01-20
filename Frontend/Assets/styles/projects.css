@@ -1,0 +1,557 @@
+/* ============================================
+   PROJECTS PAGE STYLES
+============================================ */
+
+/* Keep all the existing styles from main.css */
+/* Add these additional styles for the projects page */
+
+/* Intro Section */
+.intro_paragraph {
+  padding: 120px 0 80px;
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 0, 0, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 0, 0, 0.02) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #000000 0%, #050505 50%, #000000 100%);
+  text-align: center;
+  position: relative;
+}
+
+.intro_paragraph::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-red) 30%,
+    var(--accent-red) 70%,
+    transparent 100%
+  );
+  opacity: 0.1;
+}
+
+.intro_p {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.intro_p span {
+  display: inline-block;
+  position: relative;
+  padding: 0 20px;
+}
+
+.intro_p p {
+  font-size: 1.4rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
+}
+
+.intro_p span::before {
+  content: "{";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  color: var(--accent-red);
+  opacity: 0.3;
+  font-size: 3rem;
+  font-family: monospace;
+}
+
+.intro_p span::after {
+  content: "}";
+  position: absolute;
+  right: -10px;
+  top: 0;
+  color: var(--accent-red);
+  opacity: 0.3;
+  font-size: 3rem;
+  font-family: monospace;
+}
+
+/* Projects Section */
+.projects-section {
+  padding: 100px 0;
+  background:
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(255, 0, 0, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255, 0, 0, 0.03) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #080808 0%, #0a0a0a 50%, #080808 100%);
+  position: relative;
+}
+
+.projects-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-red) 10%,
+    var(--accent-red) 40%,
+    transparent 50%,
+    var(--accent-red) 60%,
+    var(--accent-red) 90%,
+    transparent 100%
+  );
+  opacity: 0.08;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+  margin-bottom: 80px;
+}
+
+.project-card {
+  background: linear-gradient(145deg, #101010 0%, #0d0d0d 100%);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 40px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-red);
+  transition: left 0.5s ease;
+}
+
+.project-card:hover::before {
+  left: 0;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent-red);
+  box-shadow:
+    0 20px 50px rgba(255, 0, 0, 0.15),
+    inset 0 0 0 1px rgba(255, 0, 0, 0.1);
+}
+
+.project-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--text-white);
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.project-card h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-red);
+  transition: width 0.3s ease;
+}
+
+.project-card:hover h3::after {
+  width: 100px;
+}
+
+.project-card p {
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-size: 1.05rem;
+}
+
+.project-card .btn {
+  background: transparent;
+  color: var(--accent-red);
+  border: 1px solid var(--accent-red);
+  padding: 12px 30px;
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.project-card .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-red);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.project-card .btn:hover {
+  color: var(--text-white);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+}
+
+.project-card .btn:hover::before {
+  left: 0;
+}
+
+/* Call to Action Section */
+.call.to.action {
+  text-align: center;
+  margin: 60px auto 80px;
+  max-width: 700px;
+  position: relative;
+  padding: 40px;
+  background: linear-gradient(145deg, #0f0f0f 0%, #0a0a0a 100%);
+  border: 1px solid var(--border-dark);
+  border-radius: 10px;
+}
+
+.call.to.action span {
+  display: inline-block;
+  position: relative;
+}
+
+.call.to.action p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+.call.to.action::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 4rem;
+  color: var(--accent-red);
+  opacity: 0.1;
+  font-family: Georgia, serif;
+}
+
+.call.to.action::after {
+  content: '"';
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 4rem;
+  color: var(--accent-red);
+  opacity: 0.1;
+  font-family: Georgia, serif;
+}
+
+/* Contact Section - Horizontal Card Layout */
+.contact_section {
+  padding: 100px 0;
+  background:
+    radial-gradient(
+      circle at 30% 70%,
+      rgba(255, 0, 0, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(255, 0, 0, 0.04) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #0c0c0c 0%, #0e0e0e 50%, #0c0c0c 100%);
+  position: relative;
+}
+
+.contact_section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-red) 15%,
+    transparent 30%,
+    var(--accent-red) 45%,
+    transparent 60%,
+    var(--accent-red) 75%,
+    transparent 90%,
+    var(--accent-red) 100%
+  );
+  opacity: 0.06;
+}
+
+.contact-cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: linear-gradient(145deg, #101010 0%, #0d0d0d 100%);
+  border: 1px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 50px 40px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-red);
+  box-shadow:
+    0 15px 40px rgba(255, 0, 0, 0.15),
+    inset 0 0 0 1px rgba(255, 0, 0, 0.1);
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--accent-red);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover::before {
+  transform: translateY(0);
+}
+
+.contact-card-icon {
+  font-size: 3rem;
+  color: var(--accent-red);
+  margin-bottom: 25px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover .contact-card-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.contact-card h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--text-white);
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.contact-card h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: var(--accent-red);
+  transition: width 0.3s ease;
+}
+
+.contact-card:hover h2::after {
+  width: 60px;
+}
+
+.contact-card p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 30px;
+  line-height: 1.7;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-card .btn {
+  background: transparent;
+  color: var(--text-white);
+  border: 1px solid var(--accent-red);
+  padding: 14px 35px;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-card .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 0, 0, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.contact-card .btn:hover::before {
+  left: 100%;
+}
+
+.contact-card .btn:hover {
+  background: var(--accent-red);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+/* Footer for Projects Page */
+.footer-section {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-dark);
+  text-align: center;
+  background: linear-gradient(180deg, #000000 0%, #050505 100%);
+  position: relative;
+}
+
+.footer-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-red) 50%,
+    transparent 100%
+  );
+  opacity: 0.1;
+}
+
+.footer-section p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* Responsive Design for Projects Page */
+@media (max-width: 1024px) {
+  .contact-cards-container {
+    gap: 30px;
+    max-width: 900px;
+  }
+
+  .contact-card {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro_paragraph {
+    padding: 100px 0 60px;
+  }
+
+  .intro_p p {
+    font-size: 1.2rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .project-card {
+    padding: 30px;
+  }
+
+  /* Contact cards stack vertically on mobile */
+  .contact-cards-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 500px;
+  }
+
+  .contact-card {
+    padding: 40px;
+  }
+
+  .call.to.action {
+    padding: 30px 20px;
+    margin: 40px auto 60px;
+  }
+
+  .call.to.action p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro_p p {
+    font-size: 1.1rem;
+  }
+
+  .project-card {
+    padding: 25px;
+  }
+
+  .project-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-card {
+    padding: 30px 25px;
+  }
+
+  .contact-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-card p {
+    font-size: 1rem;
+  }
+
+  .contact-card .btn {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}

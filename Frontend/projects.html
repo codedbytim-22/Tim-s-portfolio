@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIM | Projects</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Assets/styles/style.css" />
+    <link rel="stylesheet" href="Assets/styles/projects.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header class="header">
+      <nav class="navbar container">
+        <a href="index.html" class="nav-logo">Tim Macharia</a>
+
+        <!-- Mobile Menu Button -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" />
+        <label for="menu-toggle" class="menu-toggle-label">
+          <span class="hamburger"></span>
+        </label>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li>
+            <a
+              href="https://github.com/codedbytim-22"
+              class="nav-link github-link"
+              target="_blank"
+            >
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro_paragraph">
+      <div class="intro_p">
+        <span>
+          <p>
+            These are projects I've built by turning ideas into working digital
+            solutions. They demonstrate my approach to problem-solving, user
+            experience, and clean development practices.
+          </p>
+        </span>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <main id="projects" class="projects-section container">
+      <div class="section-header">
+        <h2 class="section-title">My Projects</h2>
+        <p class="section-subtitle">
+          Showcasing real-world projects demonstrating full stack development &
+          problem solving.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Project One</h3>
+          <p>A web app to manage tasks efficiently using React & Firebase.</p>
+          <a href="https://live-demo-link1.com" target="_blank" class="btn">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+          </a>
+        </div>
+        <div class="project-card">
+          <h3>Project Two</h3>
+          <p>An e-commerce platform built with Django & PostgreSQL.</p>
+          <a href="https://live-demo-link2.com" target="_blank" class="btn">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+          </a>
+        </div>
+        <div class="project-card">
+          <h3>Project Three</h3>
+          <p>A Flutter mobile app for real-time weather updates.</p>
+          <a href="https://live-demo-link3.com" target="_blank" class="btn">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+          </a>
+        </div>
+      </div>
+
+      <div class="call to action">
+        <span>
+          <p>
+            Want to explore more, collaborate, or share feedback? Use the links
+            below.
+          </p>
+        </span>
+      </div>
+    </main>
+
+    <!-- Contact & GitHub Section - Horizontal Card Layout -->
+    <section id="contact" class="contact_section">
+      <div class="container">
+        <div class="contact-cards-container">
+          <!-- Contact Card -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h2>Get in Touch</h2>
+            <p>
+              Get in touch to discuss opportunities, collaborations, or
+              questions.
+            </p>
+            <a href="contact.html" class="btn">
+              <i class="fas fa-paper-plane"></i> Contact Me
+            </a>
+          </div>
+
+          <!-- GitHub Card -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <i class="fab fa-github"></i>
+            </div>
+            <h2>Check Out My GitHub</h2>
+            <p>Explore more projects and real-world code on my GitHub.</p>
+            <a
+              href="https://github.com/codedbytim-22"
+              target="_blank"
+              class="btn"
+            >
+              <i class="fab fa-github"></i> My GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="container">
+        <p class="footer-text">© Tim 2026 | Building the Future</p>
+      </div>
+    </footer>
+    <!-- Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-firestore-compat.js"></script>
+    <!-- Optional: Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-auth-compat.js"></script>
+    <!-- Your Firebase config -->
+    <script type="module" src="Assets/scripts/firebase.js"></script>
+    <!-- Your main JS -->
+    <script src="Assets/scripts/modernizer.js"></script>
+    <script src="Assets/scripts/main.js"></script>
+  </body>
+</html>

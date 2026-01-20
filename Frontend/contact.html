@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIM | Contact</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Assets/styles/style.css" />
+    <link rel="stylesheet" href="Assets/styles/contact.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header class="header">
+      <nav class="navbar container">
+        <a href="index.html" class="nav-logo">Tim Macharia</a>
+
+        <!-- Mobile Menu Button -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" />
+        <label for="menu-toggle" class="menu-toggle-label">
+          <span class="hamburger"></span>
+        </label>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a
+              href="https://github.com/codedbytim-22"
+              class="nav-link github-link"
+              target="_blank"
+            >
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+      <div class="container">
+        <div class="breadcrumb-content">
+          <h1>Get in Touch</h1>
+          <div class="breadcrumb-links">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <span class="current">Contact</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <main class="contact-main-section" id="contact">
+      <div class="container contact-container">
+        <!-- Left Column: Contact Form -->
+        <div class="contact-form-section">
+          <div class="contact-header">
+            <h2 class="section-title">Feedback & Inquiries</h2>
+            <h3 class="contact-subtitle">
+              I value clear communication and meaningful collaboration
+            </h3>
+          </div>
+
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Your full name"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="you@example.com"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                placeholder="What would you like to discuss?"
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                placeholder="Share details about your project, idea, or feedback..."
+                class="form-textarea"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="form-submit-btn">Send Message</button>
+          </form>
+
+          <div class="contact-description">
+            <p>
+              Whether you’re looking to collaborate, hire, or simply share
+              feedback, this space is open. I aim to respond clearly, honestly,
+              and promptly to every message.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: Contact Info -->
+        <div class="contact-info-section">
+          <div class="map-area">
+            <div class="get-in-touch-text">
+              <h2>Let’s Connect</h2>
+              <p>
+                Open to freelance work, full-time opportunities, and meaningful
+                technical discussions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Updated Contact Info Grid with Interactive Buttons -->
+          <div class="contact-info-grid">
+            <!-- Phone Button - Triggers phone call -->
+            <a href="tel:+254723456789" class="info-item phone-item">
+              <div class="info-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="info-content">
+                <h4>Phone</h4>
+                <p>+254 723 456 789</p>
+              </div>
+            </a>
+
+            <!-- Email Button - Opens email client -->
+            <a
+              href="mailto:macharia.timothy.dev@gmail.com?subject=Contact%20from%20Portfolio&body=Hello%20Tim,%20I%20would%20like%20to%20discuss..."
+              class="info-item email-item"
+            >
+              <div class="info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="info-content">
+                <h4>Email</h4>
+                <p>Contact me Via Email!</p>
+              </div>
+            </a>
+
+            <!-- WhatsApp Button - Opens WhatsApp with pre-written message -->
+            <a
+              href="https://wa.me/254108194232?text=Hello%20Tim,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+              target="_blank"
+              class="info-item whatsapp-item"
+            >
+              <div class="info-icon">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div class="info-content">
+                <h4>WhatsApp</h4>
+                <p>Reach me directly on WhatsApp</p>
+              </div>
+            </a>
+
+            <!-- Location Info -->
+            <div class="info-item location-item">
+              <div class="info-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="info-content">
+                <h4>Location</h4>
+                <p>Nairobi, Kenya</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="contact-cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Let’s Build Something Meaningful</h2>
+          <p>I help turn ideas into reliable, scalable digital solutions.</p>
+          <a href="#contact" class="cta-btn">Start a Conversation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="contact-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <h3>TIM MACHARIA</h3>
+            <p>
+              Full-stack developer focused on building clean, performant, and
+              scalable web applications. I combine technical precision with
+              thoughtful design to solve real-world problems.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h4>Get in Touch</h4>
+            <ul>
+              <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+              <li><i class="fas fa-phone"></i> +254 745 064 420</li>
+              <li><i class="fab fa-whatsapp"></i> +254 707 520 372</li>
+              <li>
+                <i class="fas fa-envelope"></i> macharia.timothy.dev@gmail.com
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Tim Macharia — Building the Future</p>
+        </div>
+      </div>
+    </footer>
+    <!-- Firebase App -->
+    <script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-firestore-compat.js"></script>
+    <!-- Optional: Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/10.16.0/firebase-auth-compat.js"></script>
+    <!-- Your Firebase config -->
+    <script type="module" src="Assets/scripts/firebase.js"></script>
+    <script src="Assets/scripts/modernizer.js"></script>
+    <script src="Assets/scripts/main.js"></script>
+  </body>
+</html>
