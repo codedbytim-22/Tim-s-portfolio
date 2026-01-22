@@ -79,14 +79,20 @@
             </h3>
           </div>
 
-          <form class="contact-form">
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/xvzkorby"
+            method="POST"
+          >
             <div class="form-group">
               <label for="name">Name</label>
               <input
                 type="text"
                 id="name"
+                name="name"
                 placeholder="Your full name"
                 class="form-input"
+                required
               />
             </div>
 
@@ -95,8 +101,10 @@
               <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="you@example.com"
                 class="form-input"
+                required
               />
             </div>
 
@@ -105,8 +113,10 @@
               <input
                 type="text"
                 id="subject"
+                name="subject"
                 placeholder="What would you like to discuss?"
                 class="form-input"
+                required
               />
             </div>
 
@@ -114,8 +124,10 @@
               <label for="message">Message</label>
               <textarea
                 id="message"
+                name="message"
                 placeholder="Share details about your project, idea, or feedback..."
                 class="form-textarea"
+                required
               ></textarea>
             </div>
 
