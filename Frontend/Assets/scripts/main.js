@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize all modules
   initNavigation();
   initAnimations();
-  initContactForm();
+  initContactForm(); // This will now work with Formspree
   initProjectCards();
   initScrollEffects();
   initDynamicStats();
@@ -196,61 +196,22 @@ function initAnimations() {
     effect.style.animation = "pulse 4s ease-in-out infinite";
   });
 }
+
 /**
- * CONTACT FORM MODULE
- * Handles form validation, submission, and user feedback
- * Integrated with Firestore for real submissions
+ * CONTACT FORM MODULE - UPDATED FOR FORMSPREE
+ * Handles form validation and user feedback
+ * Formspree will handle the actual submission
  */
 function initContactForm() {
   const contactForm = document.querySelector(".contact-form");
 
   if (!contactForm) return;
 
-  // Form submission handler
-  contactForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const subject = document.getElementById("subject").value.trim();
-    const message = document.getElementById("message").value.trim();
-
-    if (!name || !email || !subject || !message) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    const submitBtn = contactForm.querySelector(".form-submit-btn");
-    submitBtn.textContent = "Sending...";
-    submitBtn.disabled = true;
-
-    try {
-      await window.FirebaseDB.addDoc(
-        window.FirebaseDB.collection(window.FirebaseDB.db, "contactMessages"),
-        {
-          name,
-          email,
-          subject,
-          message,
-          createdAt: window.FirebaseDB.serverTimestamp(),
-        },
-      );
-
-      alert("✅ Message sent successfully!");
-      contactForm.reset();
-    } catch (error) {
-      console.error("❌ Firestore error:", error);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      submitBtn.textContent = "Send Message";
-      submitBtn.disabled = false;
-    }
-  });
-
-  // Real-time validation
+  // Real-time validation - but don't prevent Formspree submission
   const formInputs = contactForm.querySelectorAll(
     ".form-input, .form-textarea",
   );
+
   formInputs.forEach((input) => {
     input.addEventListener("blur", () => validateField(input));
     input.addEventListener("input", () => clearFieldError(input));
@@ -301,38 +262,6 @@ function initContactForm() {
     return isValid;
   }
 
-  function validateForm(data) {
-    let isValid = true;
-
-    if (!data.name || data.name.length < 2) {
-      showFieldError(
-        document.getElementById("name"),
-        "Name is required and must be at least 2 characters",
-      );
-      isValid = false;
-    }
-    if (!data.email || !isValidEmail(data.email)) {
-      showFieldError(
-        document.getElementById("email"),
-        "Please enter a valid email address",
-      );
-      isValid = false;
-    }
-    if (!data.subject) {
-      showFieldError(document.getElementById("subject"), "Subject is required");
-      isValid = false;
-    }
-    if (!data.message || data.message.length < 10) {
-      showFieldError(
-        document.getElementById("message"),
-        "Message must be at least 10 characters",
-      );
-      isValid = false;
-    }
-
-    return isValid;
-  }
-
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -355,23 +284,113 @@ function initContactForm() {
     if (errorElement) errorElement.remove();
   }
 
-  function clearFormErrors() {
+  // Form submission handler - UPDATED FOR FORMSPREE
+  contactForm.addEventListener("submit", function (event) {
+    // Validate all fields
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    let hasErrors = false;
+
+    // Clear previous errors
     formInputs.forEach(clearFieldError);
-  }
+
+    // Validate each field
+    if (!name || name.length < 2) {
+      showFieldError(
+        document.getElementById("name"),
+        "Name is required and must be at least 2 characters",
+      );
+      hasErrors = true;
+    }
+
+    if (!email || !isValidEmail(email)) {
+      showFieldError(
+        document.getElementById("email"),
+        "Please enter a valid email address",
+      );
+      hasErrors = true;
+    }
+
+    if (!subject) {
+      showFieldError(document.getElementById("subject"), "Subject is required");
+      hasErrors = true;
+    }
+
+    if (!message || message.length < 10) {
+      showFieldError(
+        document.getElementById("message"),
+        "Message must be at least 10 characters",
+      );
+      hasErrors = true;
+    }
+
+    // If there are errors, prevent Formspree submission
+    if (hasErrors) {
+      event.preventDefault();
+      showFormMessage("Please fix the errors above.", "error");
+      return;
+    }
+
+    // If validation passes, allow Formspree to submit
+    // Add loading state to button
+    const submitBtn = contactForm.querySelector(".form-submit-btn");
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    // Reset button after form submission (Formspree will redirect)
+    // If Formspree redirect fails, reset button after 5 seconds
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }, 5000);
+
+    /* 
+    // OPTIONAL: If you want to also save to Firebase (without interfering with Formspree)
+    // You can add this, but it's commented out for now
+    try {
+      if (window.FirebaseDB && window.FirebaseDB.addDoc) {
+        window.FirebaseDB.addDoc(
+          window.FirebaseDB.collection(window.FirebaseDB.db, "contactMessages"),
+          {
+            name,
+            email,
+            subject,
+            message,
+            createdAt: window.FirebaseDB.serverTimestamp(),
+          },
+        ).then(() => {
+          console.log("Message also saved to Firebase");
+        }).catch(error => {
+          console.error("Firebase backup save failed:", error);
+        });
+      }
+    } catch (error) {
+      console.error("Firebase error:", error);
+    }
+    */
+  });
 
   function showFormMessage(message, type) {
-    const existingMessage = contactForm.querySelector(".form-message");
+    // Remove existing messages
+    const existingMessage = document.querySelector(".form-message");
     if (existingMessage) existingMessage.remove();
 
+    // Create new message
     const messageElement = document.createElement("div");
     messageElement.className = `form-message ${type}`;
     messageElement.textContent = message;
 
+    // Insert after form
     contactForm.parentNode.insertBefore(
       messageElement,
       contactForm.nextSibling,
     );
 
+    // Remove after 5 seconds
     setTimeout(() => messageElement.remove(), 5000);
   }
 
