@@ -6,10 +6,12 @@
  */
 
 // Wait for DOM to be fully loaded
+// Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Portfolio loaded successfully!");
 
   // Initialize all modules
+  initThemeSwitch(); // Add this line
   initNavigation();
   initAnimations();
   initContactForm(); // This will now work with Formspree
@@ -899,4 +901,77 @@ if (typeof module !== "undefined" && module.exports) {
     initContactForm,
     initProjectCards,
   };
+}
+/**
+ * THEME SWITCH MODULE
+ * Handles dark/light mode switching with smooth transitions
+ */
+function initThemeSwitch() {
+  const themeSwitch = document.querySelector(".switch-container");
+  const switchLabel = document.querySelector(".switch-label");
+  const body = document.body;
+
+  if (!themeSwitch) return;
+
+  // Check for saved theme preference or default to dark
+  const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  // Set initial theme
+  if (savedTheme === "light" || (!savedTheme && !prefersDark)) {
+    body.setAttribute("data-theme", "light");
+    switchLabel.setAttribute("data-theme", "light");
+  } else {
+    body.setAttribute("data-theme", "dark");
+    switchLabel.setAttribute("data-theme", "dark");
+  }
+
+  // Toggle theme on click
+  themeSwitch.addEventListener("click", function () {
+    const currentTheme = body.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+    // Update theme
+    body.setAttribute("data-theme", newTheme);
+    switchLabel.setAttribute("data-theme", newTheme);
+
+    // Save preference
+    localStorage.setItem("portfolio-theme", newTheme);
+
+    // Add click animation
+    this.style.transform = "scale(0.95)";
+    setTimeout(() => {
+      this.style.transform = "scale(1)";
+    }, 150);
+
+    // Log theme change (optional)
+    console.log(`Theme changed to: ${newTheme}`);
+  });
+
+  // Add hover effects
+  themeSwitch.addEventListener("mouseenter", function () {
+    this.style.transform = "scale(1.05)";
+    this.style.boxShadow = "0 0 25px rgba(255, 0, 0, 0.3)";
+  });
+
+  themeSwitch.addEventListener("mouseleave", function () {
+    const currentTheme = body.getAttribute("data-theme");
+    this.style.transform = "scale(1)";
+    if (currentTheme === "dark") {
+      this.style.boxShadow = "0 0 15px rgba(255, 0, 0, 0.1)";
+    } else {
+      this.style.boxShadow = "0 0 15px rgba(74, 111, 255, 0.1)";
+    }
+  });
+
+  // Listen for system theme changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      if (!localStorage.getItem("portfolio-theme")) {
+        const newTheme = e.matches ? "dark" : "light";
+        body.setAttribute("data-theme", newTheme);
+        switchLabel.setAttribute("data-theme", newTheme);
+      }
+    });
 }

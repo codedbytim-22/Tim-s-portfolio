@@ -930,3 +930,405 @@ h4 {
     font-size: 0.8rem;
   }
 }
+/* Add this to your main style.css file */
+:root {
+  --accent-red: #ff0000;
+  --text-light: #b0b0b0;
+  --text-white: #ffffff;
+  --bg-dark: #0a0a0f;
+  --bg-secondary: #0c0c12;
+  --bg-tertiary: #0e0e15;
+  --card-bg: #11111f;
+  --card-inner: #141424;
+  --border-dark: #222233;
+  --hover-dark: #1a1a2a;
+  --neon-glow: rgba(0, 247, 255, 0.7);
+  --grid-line: rgba(0, 247, 255, 0.1);
+  --switch-bg: #111122;
+  --switch-handle: var(--accent-red);
+}
+
+[data-theme="light"] {
+  --accent-red: #ff3333;
+  --text-light: #666666;
+  --text-white: #222222;
+  --bg-dark: #f5f7ff;
+  --bg-secondary: #eef1ff;
+  --bg-tertiary: #e8ecff;
+  --card-bg: #ffffff;
+  --card-inner: #f8faff;
+  --border-dark: #d1d9ff;
+  --hover-dark: #e6eaff;
+  --neon-glow: rgba(0, 150, 255, 0.5);
+  --grid-line: rgba(0, 150, 255, 0.05);
+  --switch-bg: #e6eaff;
+  --switch-handle: #4a6fff;
+}
+
+/* Add to body styles */
+body {
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+  position: relative;
+}
+
+/* Futuristic Background Pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  z-index: -1;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Theme Switch Styles */
+.theme-switch {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.switch-container {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  background: var(--switch-bg);
+  border-radius: 25px;
+  border: 2px solid var(--border-dark);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.switch-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.switch-container:hover::before {
+  opacity: 1;
+}
+
+.switch-handle {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 30px;
+  height: 30px;
+  background: var(--switch-handle);
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow:
+    0 0 10px rgba(255, 0, 0, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch-handle::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+[data-theme="light"] .switch-handle {
+  left: calc(100% - 33px);
+  background: linear-gradient(135deg, #4a6fff, #8bb9ff);
+  box-shadow:
+    0 0 15px rgba(74, 111, 255, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.switch-icons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  pointer-events: none;
+}
+
+.switch-icons i {
+  font-size: 14px;
+  color: var(--text-light);
+  transition: all 0.4s ease;
+  text-shadow: 0 0 5px currentColor;
+}
+
+.switch-icons .fa-moon {
+  color: #ffdd00;
+  opacity: 0.8;
+}
+
+.switch-icons .fa-sun {
+  color: #ffaa00;
+  opacity: 0;
+}
+
+[data-theme="light"] .switch-icons .fa-moon {
+  opacity: 0;
+}
+
+[data-theme="light"] .switch-icons .fa-sun {
+  opacity: 0.8;
+}
+
+.switch-label {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  margin-top: 5px;
+  transition: color 0.3s ease;
+}
+
+.switch-label::after {
+  content: attr(data-theme);
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* Add these new backgrounds to existing sections */
+.hero {
+  background:
+    radial-gradient(
+      ellipse at 30% 50%,
+      rgba(0, 247, 255, 0.1) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 70% 30%,
+      rgba(255, 0, 100, 0.08) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-dark) 0%,
+      var(--bg-secondary) 50%,
+      var(--bg-dark) 100%
+    );
+}
+
+.about {
+  background:
+    radial-gradient(
+      ellipse at 10% 90%,
+      rgba(0, 247, 255, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 90% 10%,
+      rgba(255, 0, 100, 0.06) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-secondary) 0%,
+      var(--bg-tertiary) 50%,
+      var(--bg-secondary) 100%
+    );
+}
+
+.tech-stack {
+  background:
+    radial-gradient(
+      ellipse at 30% 70%,
+      rgba(0, 247, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 30%,
+      rgba(255, 0, 100, 0.08) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-tertiary) 0%,
+      var(--bg-secondary) 50%,
+      var(--bg-tertiary) 100%
+    );
+}
+
+/* Update gradient backgrounds for hero title */
+.hero-title {
+  background: linear-gradient(
+    135deg,
+    var(--text-white) 0%,
+    var(--text-white) 60%,
+    var(--accent-red) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Update glow effect for both themes */
+.glow-effect {
+  background: linear-gradient(
+    45deg,
+    var(--accent-red),
+    var(--neon-glow),
+    var(--accent-red)
+  );
+  filter: blur(80px);
+  opacity: 0.3;
+}
+
+/* Update all section borders to use theme colors */
+.hero::before,
+.hero::after,
+.about::before,
+.about::after,
+.tech-stack::before,
+.tech-stack::after,
+.footer::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--neon-glow) 25%,
+    var(--accent-red) 50%,
+    var(--neon-glow) 75%,
+    transparent 100%
+  );
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-switch {
+    top: 90px;
+    right: 20px;
+  }
+
+  .switch-container {
+    width: 70px;
+    height: 35px;
+  }
+
+  .switch-handle {
+    width: 25px;
+    height: 25px;
+  }
+
+  [data-theme="light"] .switch-handle {
+    left: calc(100% - 28px);
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-switch {
+    top: 80px;
+    right: 15px;
+  }
+
+  .switch-container {
+    width: 60px;
+    height: 30px;
+  }
+
+  .switch-handle {
+    width: 20px;
+    height: 20px;
+  }
+
+  [data-theme="light"] .switch-handle {
+    left: calc(100% - 23px);
+  }
+
+  .switch-icons i {
+    font-size: 12px;
+  }
+}
+/* Smooth transitions for theme changes */
+.bio-card,
+.stack-card,
+.project-card,
+.contact-card,
+.btn,
+.nav-link,
+.github-link,
+.nav-logo,
+.footer-text,
+.stat-number,
+.stat-label,
+.section-title,
+.section-subtitle,
+.hero-title,
+.hero-subtitle,
+.form-input,
+.form-textarea,
+.form-submit-btn,
+.info-item {
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease,
+    box-shadow 0.5s ease,
+    transform 0.3s ease;
+}
+
+/* Specific transitions for complex elements */
+.header,
+.footer,
+.hero,
+.about,
+.tech-stack {
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* Theme-specific animation for switch */
+@keyframes switchPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.switch-container:active .switch-handle {
+  animation: switchPulse 0.3s ease;
+}
